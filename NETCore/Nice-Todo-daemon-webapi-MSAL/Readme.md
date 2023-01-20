@@ -3,7 +3,7 @@
 ## **Token cache serialization**
 After Microsoft Authentication Library (MSAL) acquires a token, it caches that token. MSAL.NET provides default and custom serialization of the token cache. (https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-net-token-cache-serialization?tabs=aspnet)
 
-## **Proof Of Possession (PoP) tokens**
+## **Proof Of Possession(PoP) tokens**
 Bearer tokens are the norm in modern identity flows, however they are vulnerable to being stolen and used to access a protected resource. Please refer the link for more details (https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/Proof-Of-Possession-(PoP)-tokens)
 
 ## **Logging**
