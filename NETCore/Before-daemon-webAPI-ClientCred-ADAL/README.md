@@ -281,6 +281,13 @@ Clean the solution, rebuild the solution, and run it.  You might want to go into
     - TodoListDaemonWithCert: **Start**
     - TodoListService: Start **Start without debugging**
  3. In the Visual Studio tool bar, press the **start** button: a web window appears running the service and a console application runs the daemon application under debugger. you can set breakpoints to understand the call to ADAL.NET.
+ 
+When you start the Web API from Visual Studio, depending on the browser you use, you'll get:
+
+- an empty web page (with Microsoft Edge)
+- or an error HTTP 401 (with Chrome)
+
+This behavior is expected as the browser is not authenticated. The Web application will be authenticated, so it will be able to access the Web API.
 
 The daemon will add items to its To Do list and then read them back.
 
