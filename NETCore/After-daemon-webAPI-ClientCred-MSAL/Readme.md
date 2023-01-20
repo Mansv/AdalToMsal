@@ -195,7 +195,7 @@ If not done already, retarget the target .NET framework of both ToDoListClient p
 			
 #### **Changes needed in TodoListService project:**
 
-The following changes should have been already done if you followed the doc explaining migration from .NET Core 2.2 version to .NET 6Vfor ToDoListService prject. If not, the following changes need to be incorporated in the service project. If the previous doc was followed, the below steps could be skipped if repetitive.
+The following changes should have been already done if you followed the doc explaining migration from .NET Core 2.2 version to .NET 6 for ToDoListService project. If not, the following changes need to be incorporated in the service project. If the previous doc was followed, the below steps could be skipped if repetitive.
 
    * Remove the below NuGet packages:
    
@@ -290,7 +290,7 @@ Clean the solution, rebuild the solution, and run it. You might want to go into 
 
 ## **Steps to verify that app is using MSAL.**
 
-1. Get network trace (e.g. using Fiddler) to observe the URL during sign-in which should redirect to v2 endpoint such as:
+1. Get a network trace (e.g. using Fiddler) to observe the URL during sign-in which should redirect to v2 endpoint such as:
 https://login.microsoftonline.com/<tenant_name>.onmicrosoft.com/oauth2/v2.0/token
 
-2. Go to the sign-in logs under service princpal section and observe that, now we are reporting the MSAL version instead of ADAL, This confirms successful migration.
+2. Go to the sign-in logs under service principal section and observe that, now we are reporting the MSAL version instead of ADAL. This confirms successful migration.
