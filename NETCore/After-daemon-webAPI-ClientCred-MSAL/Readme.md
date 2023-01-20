@@ -293,4 +293,4 @@ Clean the solution, rebuild the solution, and run it. You might want to go into 
 1. Get network trace (e.g. using Fiddler) to observe the URL during sign-in which should redirect to v2 endpoint such as:
 https://login.microsoftonline.com/<tenant_name>.onmicrosoft.com/oauth2/v2.0/token
 
-2. Go to the sign-in logs under non-interactive section and observe that, now we are reporting the MSAL version instead of ADAL, This confirms successful migration.
+2. Go to the sign-in logs under service princpal section and observe that, now we are reporting the MSAL version instead of ADAL, This confirms successful migration.
