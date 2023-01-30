@@ -221,6 +221,11 @@ The following changes should have been already done if you followed the doc expl
 
      In the ConfigureServices() method, update the line-
      
+                    services.AddAuthentication(sharedOptions =>
+                                {
+                                    sharedOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                                })
+                        .AddAzureAdBearer(options => Configuration.Bind("AzureAd", options));
      
      With-
      
@@ -228,6 +233,8 @@ The following changes should have been already done if you followed the doc expl
                         .AddMicrosoftIdentityWebApi(Configuration);
                         
      For the error observed on 'AddMicrosoftIdentityWebApi', add the NuGet package 'Microsoft.Identity.Web' to the prject and include the using statement for the same in Startup.cs.
+     
+     You can also delete the entire 'Extensions' folder from the service project as it is no longer needed.
      
      In the Configure() method definition, change the second parameter from _IHostingEnvironment_ to _IWebHostEnvironment_.
 
