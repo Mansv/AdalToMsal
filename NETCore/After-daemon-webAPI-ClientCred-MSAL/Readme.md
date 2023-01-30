@@ -105,9 +105,9 @@ If not done already, retarget the target .NET framework of both ToDoListClient p
 			            ICertificateLoader certificateLoader = new DefaultCertificateLoader();
 			            certificateLoader.LoadIfNeeded(config.Certificate);
 			
-			            p.app = ConfidentialClientApplicationBuilder.Create(ClientId)
+			            p.app = ConfidentialClientApplicationBuilder.Create(config.ClientId)
 			            .WithCertificate(config.Certificate.Certificate)
-			            .WithAuthority(new Uri(config.Authority)
+			            .WithAuthority(new Uri(config.Authority))
 			            .Build();
 			
 			            try
