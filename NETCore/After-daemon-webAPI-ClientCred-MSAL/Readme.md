@@ -68,7 +68,6 @@ If not done already, retarget the target .NET framework of both ToDoListClient p
 			IConfidentialClientApplication app;
 			…
 			const string ClientId = "<Enter_ToDoListClient_ClientID>";
-			const string authority = "https://login.microsoftonline.com/<tenant_name>.onmicrosoft.com";
 			const string resourceId = "<Enter_ToDoListService_ClientID>";
 			
     * Comment out the code under the Main() function, and replace with the following code -
@@ -110,7 +109,7 @@ If not done already, retarget the target .NET framework of both ToDoListClient p
 			
 			            p.app = ConfidentialClientApplicationBuilder.Create(ClientId)
 			            .WithCertificate(config.Certificate.Certificate)
-			            .WithAuthority(authority)
+			            .WithAuthority(new Uri(config.Authority)
 			            .Build();
 			
 			            try
@@ -200,7 +199,6 @@ The following changes should have been already done if you followed the doc expl
    * Remove the below NuGet packages:
    
             Microsoft.AspNetCore.All
-            Microsoft.NetCore.App
             System.IdentityModel.Tokens.Jwt
             
      You can also reomve the DotNetCliToolReference from the .csproj file.
@@ -221,6 +219,16 @@ The following changes should have been already done if you followed the doc expl
                                 });
                     services.AddControllers();
 
+     In the ConfigureServices() method, update the line-
+     
+     
+     With-
+     
+                    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                        .AddMicrosoftIdentityWebApi(Configuration);
+                        
+     For the error observed on 'AddMicrosoftIdentityWebApi', add the NuGet package 'Microsoft.Identity.Web' to the prject and include the using statement for the same in Startup.cs.
+     
      In the Configure() method definition, change the second parameter from _IHostingEnvironment_ to _IWebHostEnvironment_.
 
      Also add the below lines of code just before and adding authentication middleware respectively,
@@ -283,6 +291,10 @@ The following changes should have been already done if you followed the doc expl
 		        }
 
 Make sure to update the service project's appsettings.json file with the appropriate values of Domain name, tenantID and clientID.
+
+## **Note**
+
+An additional configuration change you would need to ensure is to modify the manifest of your service project to allow v2.0 versioned access tokens to be issued. In order to do this, update the "accessTokenAcceptedVersion" value in your API project's manifest file from 'null' to '2.0' and click Save.
 
 ## **Run the sample**
 
