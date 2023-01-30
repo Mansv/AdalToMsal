@@ -52,7 +52,7 @@ If not done already, retarget the target .NET framework of both ToDoListClient p
   * Remove or comment off below lines-
     
 			  using Microsoft.IdentityModel.Clients.ActiveDirectory;
-        using System.Security.Cryptography.X509Certificates;
+              using System.Security.Cryptography.X509Certificates;
         
 			  …
 			  private static AuthenticationContext authContext = null;
@@ -66,9 +66,6 @@ If not done already, retarget the target .NET framework of both ToDoListClient p
 			using Microsoft.Identity.Web;
 			…
 			IConfidentialClientApplication app;
-			…
-			const string ClientId = "<Enter_ToDoListClient_ClientID>";
-			const string resourceId = "<Enter_ToDoListService_ClientID>";
 			
     * Comment out the code under the Main() function, and replace with the following code -
 			
@@ -114,7 +111,7 @@ If not done already, retarget the target .NET framework of both ToDoListClient p
 			
 			            try
 			            {
-			                authResult = await p.app.AcquireTokenForClient(new[] { $"{resourceId}/.default" })
+			                authResult = await p.app.AcquireTokenForClient(new[] { $"{config.TodoListResourceId}/.default" })
 			                .ExecuteAsync()
 			                .ConfigureAwait(false);
 			            }
@@ -179,17 +176,6 @@ If not done already, retarget the target .NET framework of both ToDoListClient p
               using Microsoft.Identity.Web;
               …
               public string TodoListScope { get; set; }
-              …
-
-              //The description of the certificate to be used to authenticate your application.
-        
-              //<remarks>
-              //Daemon applications can authenticate with AAD through two mechanisms: ClientSecret
-              //(which is a kind of application password: the property above)
-              //or a certificate previously shared with AzureAD during the application registration 
-              //(and identified by this CertificateDescription)
-              //</remarks> 
-			
               public CertificateDescription Certificate { get; set; }
 			
 #### **Changes needed in TodoListService project:**
@@ -232,7 +218,7 @@ The following changes should have been already done if you followed the doc expl
                     services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         .AddMicrosoftIdentityWebApi(Configuration);
                         
-     For the error observed on 'AddMicrosoftIdentityWebApi', add the NuGet package 'Microsoft.Identity.Web' to the prject and include the using statement for the same in Startup.cs.
+     For the error observed on 'AddMicrosoftIdentityWebApi', add the NuGet package 'Microsoft.Identity.Web' to the project and include the using statement for the same in Startup.cs.
      
      You can also delete the entire 'Extensions' folder from the service project as it is no longer needed.
      
