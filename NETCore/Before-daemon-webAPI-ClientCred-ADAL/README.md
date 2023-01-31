@@ -55,17 +55,10 @@ To run this sample, you'll need:
 - An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/)
 - A user account in your Azure AD tenant. This sample will not work with a Microsoft account (formerly Windows Live account). Therefore, if you signed in to the [Azure portal](https://portal.azure.com) with a Microsoft account and have never created a user account in your directory before, you need to do that now.
 
-### Step 1:  Clone or download this repository
+### Step 1:  Download this repository
 
-From your shell or command line:
+Download and extract the repository .zip file onto your local machine.
 
-```Shell
-git clone https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-certificate-credential.git
-```
-
-or download and exact the repository .zip file.
-
-> Given that the name of the sample is pretty long, and so are the name of the referenced NuGet packages, you might want to clone it in a folder close to the root of your hard drive, to avoid file size limitations on Windows.
 
 ### Step 2:  Register the sample with your Azure Active Directory tenant, create a certificate, and configure the code
 
