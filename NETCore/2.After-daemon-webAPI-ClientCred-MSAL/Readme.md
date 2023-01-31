@@ -81,14 +81,13 @@ You can read more about certificate stores [here](https://github.com/AzureAD/mic
   
   * Remove or comment off below lines-
     
-			  using Microsoft.IdentityModel.Clients.ActiveDirectory;
-        using System.Security.Cryptography.X509Certificates;
-        
-			  …
-			  private static AuthenticationContext authContext = null;
-			  private static ClientAssertionCertificate certCred = null;
-			  …
-			  private static int errorCode;
+			using Microsoft.IdentityModel.Clients.ActiveDirectory;
+			using System.Security.Cryptography.X509Certificates;
+			…
+			private static AuthenticationContext authContext = null;
+			private static ClientAssertionCertificate certCred = null;
+			…
+			private static int errorCode;
 			
    * Add below lines-
 		
