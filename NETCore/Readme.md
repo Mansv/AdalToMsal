@@ -1,8 +1,8 @@
 # **Project structure**
 
-   - The first folder [1.Before-daemon-webapi-ADAL]() has the console .NET core project code which uses ADAL to sign-in and acquire the token to call an API.
-   - The second folder [2. After-migration-daemon-webapi-MSAL]() has the project which is built on top of the above project and here you will see the changes related to the code where actual migration happens from ADAL to MSAL.
-   - The third folder [3. Nice-Todo-daemon-webapi-MSAL]() has a readme and code snippet which are nice to do thingsleveraging the full capabilities of Microsoft.Identity.Web & MSAL
+   - The first folder [1.Before-daemon-webapi-ADAL](https://github.com/Mansv/AdalToMsal/tree/main/NETCore/1.Before-daemon-webAPI-ClientCred-ADAL) has the console .NET core project code which uses ADAL to sign-in and acquire the token to call an API.
+   - The second folder [2.After-migration-daemon-webapi-MSAL]() has the project which is built on top of the above project and here you will see the changes related to the code where actual migration happens from ADAL to MSAL.
+   - The third folder [3.Nice-Todo-daemon-webapi-MSAL]() has a readme and code snippet which are nice to do thingsleveraging the full capabilities of Microsoft.Identity.Web & MSAL
 
 
 The sample shown here explains how an ASP.NET Core 2.2 targeted projects are migrated to .NET 6.0. Please refer to the below doc for detailed information -
