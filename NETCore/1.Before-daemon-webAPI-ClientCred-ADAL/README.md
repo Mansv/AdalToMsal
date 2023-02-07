@@ -380,6 +380,32 @@ First, in Visual Studio, create an empty solution to host the  projects.  Then, 
 
 See how the code was created for the service in the [active-directory-dotnet-native-aspnetcore](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore#how-the-code-was-created) sample, except that here the controller is not expecting any user.
 
+### Verifying this app is using ADAL (From Admin perspective)
+
+1. Notice the URL during the sign-in process which will be using the V1 endpoint.
+
+  ![image](https://user-images.githubusercontent.com/62542910/206369207-7759357e-fea9-45e0-8a36-b994ee56b757.png)
+    
+    https://login.microsoftonline.com/<Tenant_ID>/oauth2/authorize?client_id=<client_id>&redirect_uri=https%3a%2f%2flocalhost%3a44377%2fsignin-oidc&resource=https%3a%2f%2fgraph.microsoft.com&response_type=id_token
+  
+2. Go to Azure portal and observe the sign -in logs and click on the additional details tab and observe the ADAL information(under non-interactive logs)
+    
+    ![image](https://user-images.githubusercontent.com/62542910/206378418-83948cbe-bf09-4a3a-a266-bfc51c4aa4b4.png)
+
+3. If you have setup the workbook solution to track the ADAL apps as explained [here](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-get-list-of-all-active-directory-auth-library-apps) then you will see the entry as below  
+    
+    ![image](https://user-images.githubusercontent.com/62542910/206378709-e60e6704-aeb2-49df-bb7d-460112370264.png)
+
+### Verifying this app is using ADAL (From developer perspective)
+
+1. Search the entire project/solution to identify whether ADAL NUGET package is installed - The name of the package is `Microsoft.IdentityModel.Clients.ActiveDirectory`   
+2. Search the entire project/solution for the namespace `using Microsoft.IdentityModel.Clients.ActiveDirectory;`
+3. Search the entire project/solution for the class `AuthenticationContext`
+
+#### Quick Tips: 
+1. It is recomanded that, you unistall the ADAL NUGET package from the solution so that, Visual studio reports package missing errors for the code wherever ADAL namespace and AuntticationContext clasess are used. That makes it easier to review the ADAL related code. 
+2. If you do not find the ADAL references in the entire solution and still if your app is using ADAL calls, that means, you have a reference to a dependency which uses the ADAL. In that case, you will have to reach out to dependency owners to make the code changes. 
+
 ## Community Help and Support
 
 Use [Stack Overflow](http://stackoverflow.com/questions/tagged/adal) to get support from the community.
