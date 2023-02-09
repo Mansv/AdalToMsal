@@ -317,9 +317,24 @@ Make sure to update the service project's appsettings.json file with the appropr
 
 Clean the solution, rebuild the solution, and run it. You might want to go into the solution properties and set both projects as startup projects, with the service project starting first.
 
-## **Steps to verify that app is using MSAL.**
+## **Steps to verify that app is using MSAL (From admin perspective)**
 
-1. Get network trace (e.g. using Fiddler) to observe the URL during sign-in which should redirect to v2 endpoint such as:
+1. Get a network trace (e.g. using Fiddler) to observe the URL during sign-in which should redirect to v2 endpoint such as:
 https://login.microsoftonline.com/<tenant_name>.onmicrosoft.com/oauth2/v2.0/token
 
-2. Go to the sign-in logs under non-interactive section and observe that, now we are reporting the MSAL version instead of ADAL, This confirms successful migration.
+2. Go to the sign-in logs in Azure AD, under non-interactive section and observe that, now we are reporting the MSAL version instead of ADAL, This confirms successful migration.
+
+3. You would also observe the migration to MSAL if you have the workbooks solution configured in your environment as described [here](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-get-list-of-all-active-directory-auth-library-apps).
+
+## **Steps to verify that app is using MSAL (From developer perspective)**
+
+1. Search the entire project/solution to identify whether ADAL NUGET package is installed - The name of the package is `Microsoft.IdentityModel.Clients.ActiveDirectory`
+
+2. Search the entire project/solution for the namespace using `Microsoft.IdentityModel.Clients.ActiveDirectory;`
+
+3. Search the entire project/solution for the class `AuthenticationContext`
+
+#### Quick Tips: 
+1. It is recommended that, you unistall the ADAL NUGET package from the solution so that, Visual studio reports package missing errors for the code wherever ADAL namespace and AuthenticationContext classes are used. That makes it easier to review the ADAL related code. 
+2. If you do not find the ADAL references in the entire solution and still if your app is using ADAL calls, that means, you have a reference to a dependency which uses the ADAL. In that case, you will have to reach out to dependency owners to make the code changes. 
+
